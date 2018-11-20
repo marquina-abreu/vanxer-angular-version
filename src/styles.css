@@ -1,1 +1,74 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+  
+  margin:0;
+  height: 100%; /*esto lo coloque porq cuando abria el sidemenu en una pagina q no tenia contenido.. me aparecia el menu cortico.. con esto hago el container q el alto sea el 100% sin importar si tenga o no contenido*/
+}
+.expander-height {
+  height: 100%; /*AQUI HAGO QUE CUANDO UNA PAGINA TENGA POCO O NADA DE CONTENIDO.. IGUAL SE VEA EL MENU COMPLETO.. PERO PARA ESO TAMBIEN DEBO PONERSELO AL BODY Y AL HTML COMO HICE ARRIBA*/
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+.poi {
+  cursor: pointer;
+}
+
 /* You can add global styles to this file, and also import other style files */
+mat-sidenav { /*esto lo puso moises*/
+  width: 250px;
+}
+mat-nav-list{ /*esto lo puso moises*/
+  width: 249px;
+  position:fixed;
+}
+mat-nav-list > a :hover{ /*esto lo puso moises*/
+  background-color: #9933ff;
+  color:#ffe6ff;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  width:90%;
+  margin: 40px auto;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+form {
+	display: flex;
+	flex-direction:column;
+	width:90%;
+	margin: 40px auto;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0.5rem;
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}

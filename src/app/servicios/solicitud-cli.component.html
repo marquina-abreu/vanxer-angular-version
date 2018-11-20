@@ -1,0 +1,81 @@
+<h2 style="text-align:center;">Solicita a tu transportista</h2>
+
+<form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
+<div class="example-container">
+			<h3>Elige tu ubicación</h3>
+	
+		  <mat-form-field class="example-full-width">
+			    <mat-select formControlName="zonaSelected" id="zonaSelected" (selectionChange)="refresZona()"  [(value)]="zonaSelected" >
+			      <mat-option value="0" disabled selected>Elija su opción</mat-option>
+			      <mat-option [value]="zona._id" *ngFor="let zona of zonas" >{{zona.name}}</mat-option>
+			    </mat-select>
+      </mat-form-field>
+      <!-- <p>you  select: {{zonaSelected}}</p> -->
+  			<br>
+
+        <ng-container *ngIf="zonaSelected!=='0'">
+          <h3>Elige el turno que buscas</h3>
+  
+          <mat-form-field class="example-full-width">
+              <mat-select formControlName="turnoSelected" id="turnoSelected"  [(value)]="turnoSelected" (selectionChange)="zona_turSelect()" >
+                <mat-option value="0" disabled selected>Elija su opción</mat-option>
+                <mat-option [value]="turno._id" *ngFor="let turno of turnos" >{{turno.name_tur}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+				</ng-container>
+				
+				<ng-container *ngIf="turnoSelected!=='0'">
+
+				<mat-spinner style="display:inline-block; margin:0px auto;" *ngIf="cargar_trans"></mat-spinner>
+				
+				<ng-container *ngIf="!cargar_trans">
+				
+  			<ng-container *ngIf="transportistas.length > 0">
+	  			<h3>Elige un transportista</h3>
+
+        <mat-form-field class="example-full-width">
+				    <mat-select formControlName="transportista_selec" id="transportista_selec" [(value)]="transportista_selec" (selectionChange)="findImage(transportista_selec)">
+				      <mat-option value="0" disabled selected>Elija su opción</mat-option>
+				      <mat-option *ngFor="let transportista of transportistas" [value]="transportista._id">{{transportista.name_tra}} {{transportista.surname_tra}} </mat-option>
+				    </mat-select>
+          </mat-form-field>
+	  			
+	  			<br><br>
+          <ng-container *ngIf="transportista_selec!=='0'">
+        <img *ngIf="imagen_trans" src="{{url + 'get-image-van/'+ imagen_trans}}" style="width:185px; display:block; margin:auto;" class="card responsive-img" />
+	  			<mat-form-field class="example-full-width">
+          <!-- <i mat-list-icon class="material-icons">account_circle</i> -->
+                <input matInput formControlName="email" id="email" placeholder="Correo Electronico" >
+         		</mat-form-field>
+         		<mat-form-field class="example-full-width">
+          			<input matInput formControlName="name" placeholder="Nombre" id="name" type="text">
+         		</mat-form-field>
+         		<mat-form-field class="example-full-width">
+          			<input matInput formControlName="surname" placeholder="Apellido" id="surname" type="text">
+         		</mat-form-field>
+         		<mat-form-field class="example-full-width">
+          			<input matInput formControlName="phone" placeholder="Telefono" id="phone" type="text">
+          			
+         		</mat-form-field>
+         		<mat-form-field class="example-full-width">
+          			<textarea matInput formControlName="commentary" placeholder="Comentario" id="commentary"></textarea>
+         		</mat-form-field>
+         		<br>
+         		<button type="submit" mat-raised-button color="accent">Enviar solicitud</button>
+            </ng-container>
+
+	  			
+					</ng-container>
+				</ng-container>
+        
+  			<div *ngIf="transportistas.length===0">
+        <p style="text-align:center;">
+  			<img src="/assets/images/error.gif" class="responsive-img">
+        </p>
+        <h3 style="text-align:center;">No hay transportista para esta zona</h3>
+				</div>
+			</ng-container>
+        
+
+		</div>
+</form>

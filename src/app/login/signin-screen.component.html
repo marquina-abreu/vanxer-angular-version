@@ -1,0 +1,30 @@
+
+
+			<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+				<h2 style="text-align:center;">Iniciar Sesion</h2>
+				<br>
+				<div class="example-container">
+				<ng-container *ngIf="!cargar_envio">
+					<mat-form-field class="example-full-width">
+					<!-- <i mat-list-icon class="material-icons">account_circle</i> -->
+			    		<input matInput formControlName="user" id="user" placeholder="Usuario" >
+			    		<span *ngIf="submitted && f.user.errors" class="red-text">El usuario es requerido!</span>
+			  		</mat-form-field>
+			  		<mat-form-field class="example-full-width">
+			  		<!-- <i class="material-icons prefix">lock</i> -->
+			    		<input matInput type="password" formControlName="password" id="password" placeholder="Contraseña" >
+			    		<span *ngIf="submitted && f.password.errors" class="red-text">La clave es requerida!</span>
+			  		</mat-form-field>
+  					<button type="submit" [disabled]="loading" mat-raised-button color="accent">Iniciar Sesión</button>
+			  		<p style="text-align:center;">
+			  			¿Eres nuevo?
+			  			<a mat-button color="primary" routerLink="/servicios">Crear Usuario</a>
+			  		</p>
+			  		</ng-container>
+
+			  		<mat-spinner style="display:inline-block; margin:0px auto;" *ngIf="cargar_envio"></mat-spinner>
+			  			
+				</div>
+			
+			</form>
+			
